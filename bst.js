@@ -29,7 +29,9 @@ class Tree{
         }
 
         // get the middle element of the array and make it root
-        
+        let mid = Math.floor((start+end)/2);
+        let rootNode = new Node(array[mid])
+
 
     }
 
