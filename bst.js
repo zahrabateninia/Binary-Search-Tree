@@ -32,6 +32,12 @@ class Tree{
         let mid = Math.floor((start+end)/2);
         let rootNode = new Node(array[mid])
 
+        // recursive case ( recursively construct left and right subtrees)
+        array.left = this.constructBST(array, start, mid -1);
+        array.right = this.constructBST(array, mid+1, end);
+
+        return rootNode;
+
 
     }
 
