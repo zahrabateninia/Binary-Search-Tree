@@ -3,8 +3,7 @@
 class Node{
     constructor(data){
         this.data = data;
-        this.left = null;
-        this.right = null;
+        this.left = this.right = null;
     }
 }
 
@@ -33,8 +32,8 @@ class Tree{
         let rootNode = new Node(array[mid])
 
         // recursive case ( recursively construct left and right subtrees)
-        array.left = this.constructBST(array, start, mid -1);
-        array.right = this.constructBST(array, mid+1, end);
+        rootNode.left = this.constructBST(array, start, mid -1);
+        rootNode.right = this.constructBST(array, mid+1, end);
 
         return rootNode;
     }
@@ -44,13 +43,23 @@ class Tree{
           return;
         }
         if (node.right !== null) {
-          prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+          this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
         }
         console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
         if (node.left !== null) {
-          prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+          this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
       };
+
+      // A new key is always inserted at the leaf by maintaining the property of the binary search tree.
+      //  We start searching for a key from the root until we hit a leaf node. Once a leaf node is found,
+      //  the new node is added as a child of the leaf node. 
      
 
 }
+
+// Example usage:
+const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+const tree = new Tree(array);
+tree.prettyPrint(tree.root);
+console.log(tree)
