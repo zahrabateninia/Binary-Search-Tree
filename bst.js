@@ -54,6 +54,17 @@ class Tree{
       // A new key is always inserted at the leaf by maintaining the property of the binary search tree.
       //  We start searching for a key from the root until we hit a leaf node. Once a leaf node is found,
       //  the new node is added as a child of the leaf node. 
+      insert(value){
+        this.root = this.insertValue(this.root, value);
+      }
+      insertValue(node, value){
+        // base case
+        if(node === null){
+          return new Node(value);
+        }
+
+        
+      }
      
 
 }
