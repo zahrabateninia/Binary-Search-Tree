@@ -57,13 +57,20 @@ class Tree{
       insert(value){
         this.root = this.insertValue(this.root, value);
       }
+
       insertValue(node, value){
         // base case
         if(node === null){
           return new Node(value);
         }
 
-        
+        if(value < node.data){
+          node.left = this.insertValue(node.left, value) 
+        }
+        else if(value > node.data){
+          node.right = this.insertValue(node.right, value)
+        }
+        return node;
       }
      
 
