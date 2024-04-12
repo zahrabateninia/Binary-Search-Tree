@@ -73,6 +73,40 @@ class Tree{
         return node;
       }
      
+      delete(value){
+        this.root = this.deleteValue(this.root, value);
+      }
+
+      // take the value and when its node is found delete the node and return the new root
+      deleteValue(node, value){
+        // base case
+        if(node === null){
+          return this.root;
+        }
+
+        if(value < node.data){
+          node.left = this.deleteValue(node.left, value)
+        }else if(value> node.data){
+          node.right = this.deleteValue(node.right, value)
+        }else{
+          // Node with one child or no child
+          if(node.left === null){
+            return node.right;
+          }else if(node.right === null){
+            return node.left;
+          }
+
+          // Node with two children, we should find its inorder successor
+          // Inorder Successor: the smallest value in the right subtree
+        }
+
+
+
+      // Three scenarios of deleting a Node in a BST:
+      // 1: Delete a leaf Node:
+      // 2: Delete a Node with a single child in BST
+      // 3: Delete a Node with both children
+      }
 
 }
 
