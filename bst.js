@@ -98,6 +98,18 @@ class Tree{
 
           // Node with two children, we should find its inorder successor
           // Inorder Successor: the smallest value in the right subtree
+          node.data = this.minValue(this.right){
+
+          }
+        }
+
+        minValue(node){
+          let minValue = node.data;
+          while(node.left !== null){
+            minValue = node.left.data;
+            node = node.left 
+          }
+          return minValue;
         }
 
 
