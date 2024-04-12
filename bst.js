@@ -122,6 +122,22 @@ class Tree{
         return inorderSucc;
       }
 
+      // Return the node with the given value
+      find(value){
+        return this.findValue(this.root, value)
+      }
+
+      findValue(node, value){
+        // base case
+        if(node.data === null || node.data === value) return node.data;
+
+        if(value < node.data ){
+           return this.findValue(node.left, value)
+        }else{
+           return this.findValue(node.right, value)
+        }
+        
+      }
 
 }
 
@@ -133,3 +149,5 @@ console.log(tree)
 tree.deleteItem(67); 
 console.log("\nTree after deletion of value 67:");
 tree.prettyPrint(tree.root);
+console.log(tree.find(324))
+tree.prettyPrint(tree.root)
