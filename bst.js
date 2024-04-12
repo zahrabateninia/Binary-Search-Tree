@@ -73,21 +73,21 @@ class Tree{
         return node;
       }
      
-      delete(value){
-        this.root = this.deleteValue(this.root, value);
+      deleteItem(value){
+        this.root = this.deleteNode(this.root, value);
       }
 
       // take the value and when its node is found delete the node and return the new root
-      deleteValue(node, value){
+      deleteNode(node, value){
         // base case
         if(node === null){
           return this.root;
         }
 
         if(value < node.data){
-          node.left = this.deleteValue(node.left, value)
-        }else if(value> node.data){
-          node.right = this.deleteValue(node.right, value)
+          node.left = this.deleteNode(node.left, value)
+        }else if(value > node.data){
+          node.right = this.deleteNode(node.right, value)
         }else{
           // Node with one child or no child
           if(node.left === null){
@@ -98,25 +98,28 @@ class Tree{
 
           // Node with two children, we should find its inorder successor
           // Inorder Successor: the smallest value in the right subtree
-          node.data = this.findInorderSuccessor(this.right)
+          node.data = this.findInorderSuccessor(node.right)
 
           // Replace the inorder successor with the node to be deleted
           // And then delete the inorder successor in our right subtree
 
+          // Delete the inorder successor
+          node.right = this.deleteNode(node.right, node.data)
+
         }
-
-
-
-
+        return node;
       }
 
       findInorderSuccessor(node){
-        let minValue = node.data;
+        if(node === null){
+          return null;
+        }
+        let inorderSucc = node.data;
         while(node.left !== null){
-          minValue = node.left.data;
+          inorderSucc = node.left.data;
           node = node.left 
         }
-        return minValue;
+        return inorderSucc;
       }
 
 
@@ -127,3 +130,6 @@ const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = new Tree(array);
 tree.prettyPrint(tree.root);
 console.log(tree)
+tree.deleteItem(67); 
+console.log("\nTree after deletion of value 67:");
+tree.prettyPrint(tree.root);
