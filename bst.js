@@ -98,27 +98,27 @@ class Tree{
 
           // Node with two children, we should find its inorder successor
           // Inorder Successor: the smallest value in the right subtree
-          node.data = this.minValue(this.right){
+          node.data = this.findInorderSuccessor(this.right)
 
-          }
-        }
+          // Replace the inorder successor with the node to be deleted
+          // And then delete the inorder successor in our right subtree
 
-        minValue(node){
-          let minValue = node.data;
-          while(node.left !== null){
-            minValue = node.left.data;
-            node = node.left 
-          }
-          return minValue;
         }
 
 
 
-      // Three scenarios of deleting a Node in a BST:
-      // 1: Delete a leaf Node:
-      // 2: Delete a Node with a single child in BST
-      // 3: Delete a Node with both children
+
       }
+
+      findInorderSuccessor(node){
+        let minValue = node.data;
+        while(node.left !== null){
+          minValue = node.left.data;
+          node = node.left 
+        }
+        return minValue;
+      }
+
 
 }
 
