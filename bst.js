@@ -160,6 +160,22 @@ class Tree{
         return result;
       }
 
+      inOrder(callback = null){
+        let result = []
+        this.inorderTraversal(this.root, result, callback)
+        return result;
+      }
+
+      inorderTraversal(node, result, callback){
+        if(node === null) return;
+        
+        this.inorderTraversal(node.left, result, callback); // Traverse the left subtree in inorder
+        result.push(node.data)  // add the root node to the result array
+        if (callback) return callback(node)
+        this.inorderTraversal(node.right, result, callback) // Traverse the right subtree in inorder
+
+      }
+
 }
 
 // Example usage:
@@ -172,5 +188,5 @@ console.log("\nTree after deletion of value 67:");
 tree.prettyPrint(tree.root);
 console.log(tree.find(324))
 tree.prettyPrint(tree.root)
-
+console.log("\nTree in breadth-first level order:")
 console.log(tree.levelOrder())
