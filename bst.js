@@ -176,6 +176,23 @@ class Tree{
 
       }
 
+      preOrder(callback = null){
+        let result = []
+        this.preOrderTraversal(this.root, result, callback)
+        return result;
+      }
+
+      preOrderTraversal(node, result, callback){
+        if(node === null) return;
+        result.push(node.data)  // add the root node to the result array
+        if (callback) return callback(node)
+
+        this.preOrderTraversal(node.left, result, callback); // Traverse the left subtree in inorder
+        
+        this.preOrderTraversal(node.right, result, callback) // Traverse the right subtree in inorder
+
+      }
+
 }
 
 // Example usage:
@@ -190,3 +207,7 @@ console.log(tree.find(324))
 tree.prettyPrint(tree.root)
 console.log("\nTree in breadth-first level order:")
 console.log(tree.levelOrder())
+console.log("\nTree in inOrder:")
+console.log(tree.inOrder());
+console.log("\nTree in preOrder:");
+console.log(tree.preOrder())
