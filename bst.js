@@ -193,6 +193,21 @@ class Tree{
 
       }
 
+      postOrder(callback = null) {
+        const result = [];
+        this.postOrderTraversal(this.root, result, callback);
+        return result;
+      }
+    
+      postOrderTraversal(node, result, callback) {
+          if (node === null) return;
+          this.postOrderTraversal(node.left, result, callback);
+          this.postOrderTraversal(node.right, result, callback);
+          result.push(node.data);
+          if (callback) callback(node);
+      }
+    
+
 }
 
 // Example usage:
@@ -211,3 +226,5 @@ console.log("\nTree in inOrder:")
 console.log(tree.inOrder());
 console.log("\nTree in preOrder:");
 console.log(tree.preOrder())
+console.log("\nTree in postOrder:");
+console.log(tree.postOrder())
