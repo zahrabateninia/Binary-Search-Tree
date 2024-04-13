@@ -139,6 +139,27 @@ class Tree{
         
       }
 
+      levelOrder(callback = null){
+        // if there's no node to traverse
+        if(!this.root) return [];
+
+        let queue = [this.root];
+        let result = [];
+
+        while(queue.length > 0){ 
+          const node = queue.shift(); // remove the first element in the queue 
+          result.push(node.data)
+
+          if (node.left) queue.push(node.left)
+          if (node.right) queue.push(node.right)
+
+          if (callback) callback(node);
+
+
+        }
+        return result;
+      }
+
 }
 
 // Example usage:
@@ -151,3 +172,5 @@ console.log("\nTree after deletion of value 67:");
 tree.prettyPrint(tree.root);
 console.log(tree.find(324))
 tree.prettyPrint(tree.root)
+
+console.log(tree.levelOrder())
