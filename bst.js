@@ -129,7 +129,7 @@ class Tree{
 
       findValue(node, value){
         // base case
-        if(node.data === null || node.data === value) return node.data;
+        if(node.data === null || node.data === value) return node;
 
         if(value < node.data ){
            return this.findValue(node.left, value)
@@ -184,12 +184,12 @@ class Tree{
 
       preOrderTraversal(node, result, callback){
         if(node === null) return;
-        result.push(node.data)  // add the root node to the result array
+        result.push(node.data) 
         if (callback) return callback(node)
 
-        this.preOrderTraversal(node.left, result, callback); // Traverse the left subtree in inorder
+        this.preOrderTraversal(node.left, result, callback);
         
-        this.preOrderTraversal(node.right, result, callback) // Traverse the right subtree in inorder
+        this.preOrderTraversal(node.right, result, callback)
 
       }
 
@@ -206,7 +206,31 @@ class Tree{
           result.push(node.data);
           if (callback) callback(node);
       }
-    
+    // return the given node's height 
+    // height of a node: number of edges on the longest path from the node to a leaf node
+    height(node = this.root) {
+      if (node === null) {
+          return -1; // Height of null node is -1
+      } else {
+          // Recursively calculate the height of left and right subtrees
+          let leftHeight = this.height(node.left);
+          let rightHeight = this.height(node.right);
+          // Return the maximum height of left and right subtrees, plus 1 for the current node
+          return Math.max(leftHeight, rightHeight) + 1;
+      }
+  }
+
+  // return number of edges in the path from a given node to the tree’s root node.
+  depth(node){
+    return this.findDepth(this.root, node, 0)
+  }
+
+  findDepth(currentNode, targetNode, depth){
+    // base case
+    if(currentNode === null || currentNode === targetNode){
+      return depth;
+    }
+  }
 
 }
 
@@ -218,8 +242,8 @@ console.log(tree)
 tree.deleteItem(67); 
 console.log("\nTree after deletion of value 67:");
 tree.prettyPrint(tree.root);
+console.log("\nFind 324:")
 console.log(tree.find(324))
-tree.prettyPrint(tree.root)
 console.log("\nTree in breadth-first level order:")
 console.log(tree.levelOrder())
 console.log("\nTree in inOrder:")
@@ -228,3 +252,5 @@ console.log("\nTree in preOrder:");
 console.log(tree.preOrder())
 console.log("\nTree in postOrder:");
 console.log(tree.postOrder())
+console.log("\nHeight of the node with the data of 8:")
+console.log(tree.height(tree.find(8)))
