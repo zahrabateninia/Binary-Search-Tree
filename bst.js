@@ -230,6 +230,12 @@ class Tree{
     if(currentNode === null || currentNode === targetNode){
       return depth;
     }
+
+    if(targetNode.data < currentNode.data){
+      return this.findDepth(currentNode.left, targetNode, depth + 1)
+    }else{
+      return this.findDepth(targetNode.right, targetNode, depth + 1)
+    }
   }
 
 }
@@ -254,3 +260,6 @@ console.log("\nTree in postOrder:");
 console.log(tree.postOrder())
 console.log("\nHeight of the node with the data of 8:")
 console.log(tree.height(tree.find(8)))
+console.log("\nDepth of the node with the data of 324:")
+console.log(tree.depth(tree.find(324)))
+
