@@ -256,6 +256,16 @@ class Tree{
         return false;
     }
   }
+  // rebalance the tree when it becomes unbalanced due to repeated insertions or deletions.
+  reBalance() {
+    // Perform an inorder traversal to retrieve the elements in sorted order
+    const sortedNodes = [];
+    this.inOrder(node => sortedNodes.push(node.data)); // an arrow function passed as a callback
+
+    // Rebuild the BST using the sorted elements
+    this.root = this.buildTree(sortedNodes);
+}
+
 
 }
 
