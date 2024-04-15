@@ -238,6 +238,25 @@ class Tree{
     }
   }
 
+  // A balanced tree is one where the difference between heights of the left subtree and the right subtree of every node is not more than 1.
+  isBalanced(node = this.root){
+    // base case: an empty tree is balanced
+    if(node === null) return true;
+    // check if the left and right subtrees are balanced
+    let leftBalanced = this.isBalanced(node.left)
+    let rightBalanced = this.isBalanced(node.right)
+
+    // get the heights of left and right subtrees
+    let leftHeight = this.height(node.left)
+    let rightHeight = this.height(node.right)
+   
+    if(Math.abs(leftHeight - rightHeight) <= 1 && leftBalanced && rightBalanced) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+
 }
 
 // Example usage:
@@ -262,4 +281,5 @@ console.log("\nHeight of the node with the data of 8:")
 console.log(tree.height(tree.find(8)))
 console.log("\nDepth of the node with the data of 324:")
 console.log(tree.depth(tree.find(324)))
+console.log("\nIs tree balanced? ", tree.isBalanced())
 
