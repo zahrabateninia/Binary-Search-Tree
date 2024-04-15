@@ -2,8 +2,6 @@
 
 This JavaScript module (`bst.js`) provides classes to work with binary search trees (BSTs). It includes implementations for creating a binary search tree from an array, inserting elements, deleting elements, searching for elements, traversing the tree in various orders, checking if the tree is balanced, and rebalancing the tree.
 
-## Usage
-
 ### Installation
 
 Copy the `bst.js` file to your project directory.
@@ -14,6 +12,7 @@ Import the `Tree` class into your JavaScript file:
 
 ```javascript
 const Tree = require('./bst.js');
+```
 
 ## Methods
 
